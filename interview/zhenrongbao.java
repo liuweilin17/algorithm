@@ -1,4 +1,4 @@
-//归并排序
+//二分查找
 
 public class Main {
     //recursive
