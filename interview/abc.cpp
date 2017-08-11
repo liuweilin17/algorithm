@@ -34,31 +34,35 @@ int findKthMax(int* a, int left, int right, int k){
     i = left;
     j = right;
     x = a[i];
+    if(i == j){//不加这个找不到一部分数
+        return x;
+    }
     if(i < j){
-        while(i < j && a[j] > x){
+        while(i < j && a[j] >= x){
             j--;
         }
         if(i < j){
             a[i++] = a[j];
         }
-        while(i < j && a[i] < x){
+        while(i < j && a[i] <= x){
             i++;
         }
         if(i < j){
             a[j--] = a[i];
         }
         a[i] = x;
-        if(i == k){
-            return x;
+        
+        if(i < k){
+            return findKthMax(a, i+1, right, k);
         }else if(i > k){
             return findKthMax(a, left, i-1, k);
         }else{
-            return findKthMax(a, i+1, right, k);
+            return x;
         }
     }
 }
 int main(){
     cout<<"hh"<<endl;
-    int a[] = {3,2,1,5,4};
-    cout<<findKthMax(a, 0, 4, 4);
+    int a[] = {3,2,1,5,4,6,7,9,8};
+    cout<<findKthMax(a, 0, 8, 1)<<endl;
 }
