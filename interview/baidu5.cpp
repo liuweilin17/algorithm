@@ -7,7 +7,7 @@ vector<int> getTopK(int* a, int start, int end_, int k){
     int x = a[start];
     vector<int> b;
     cout<<"start:"<<start<<"end:"<<end_<<endl;
-    if(i == j){
+    if(i == j){//notice
         cout<<"i==j "<<i<<"a[0]"<<a[0]<<endl;
         for(int t=0 ; t<k ; t++){
                 b.push_back(a[t]);
