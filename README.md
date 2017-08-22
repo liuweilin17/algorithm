@@ -16,3 +16,5 @@ interview directory:
 12. 疯狂队列：netease1.cpp
 13. 数字中文读法：weiboyi.cpp
 14. 二分查找：zhenrongbao.java
+15. 判断平衡二叉树：amazon1.cpp
+16. 判断万全二叉树：netease2.cpp
