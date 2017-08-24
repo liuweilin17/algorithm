@@ -29,11 +29,12 @@ vector<int> mergeSort(int*a, int n){
     return ret;
 }
 int main(){
-    int a[] = {5, 4, 3, 1, 2};
+    int a[] = {53,17,78,9,45,65,87,23};
     mergeCreate(a, 5);
     for(int i=0 ; i<5 ; i++){
-        printf("%d", a[i]);
+        printf("%d ", a[i]);
     }
+    printf("\n");
     vector<int> v = mergeSort(a, 5);
     for(int i=0 ; i<v.size() ; i++){printf("%d ", v[i]);}
 }
