@@ -1,5 +1,4 @@
 //common father node of tow nodes
-//not finish yet!!!!!!!!!!!!!!
 #include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
