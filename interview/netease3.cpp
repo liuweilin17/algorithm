@@ -1,4 +1,4 @@
-//查找一个向右移动若干位的递增数组的最小值
+//find smallest element in a sorted array(may >>)
 
 #include<iostream>
 using namespace std;
