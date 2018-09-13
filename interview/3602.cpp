@@ -21,8 +21,7 @@ vector<string> splitC(string s, string t){
 		}else{
 			tmp1 += s[i];
 		}
-	}
-	//tmp1 = ""; //error
+	} //tmp1 = ""; //error
 	for(int j=i; j<n ; j++){
 		tmp1+=s[j];
 	}

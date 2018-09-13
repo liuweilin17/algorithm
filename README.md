@@ -18,6 +18,7 @@ interview directory:
 14. 二分查找：zhenrongbao.java
 15. 判断平衡二叉树：amazon1.cpp
 16. 判断完全二叉树：netease2.cpp
+11. 二叉树遍历以及最低公共祖先：lianjia1.py
 
 books:
 1. 最长递增子序列：array1.cpp
