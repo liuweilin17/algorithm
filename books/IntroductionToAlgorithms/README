@@ -1,0 +1,12 @@
+To READERS:
+    Actually, there are many versions of classic algorithms when we search on the Internet.
+    Inevitably, some of them are incomplete, mistaken or obscure to read.
+    When taking the course 'Algorithms and Data Structures' in UofT, we are required to read the textbook, 
+    which is 'Introduction to Algorithms(3rd Edition)'.
+    I found the book is really comprehensive, well-organized and gives detailed explanation of
+    algorithms and structures.
+    Therefore, I found it really meaningful to implement the pseudocode in the book.
+    And the codes in this diretory are in Python2.7 versions.
+    P.S, some pseudocode are optimized. And I will try to maintain the original version
+    in the same time.
+

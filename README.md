@@ -21,5 +21,7 @@ interview directory:
 11. 二叉树遍历以及最低公共祖先：lianjia1.py
 
 books:
-1. 最长递增子序列：array1.cpp
-2. 子数组之和做大值：array2.cpp
+1. IntroductionToAlgorithms 算法实现
+2. 最长递增子序列：array1.cpp
+3. 子数组之和做大值：array2.cp
+4. p
