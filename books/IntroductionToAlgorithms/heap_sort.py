@@ -41,9 +41,11 @@ class HeapSort:
         if largest != i:
             self.swap(A, i, largest)
             self.maxHeapify(A, largest, end)
-    
+
     # without recursion and swap
     def maxHeapifyNew(self, A, i, end):
+        if i >= end:
+            return
         org = A[i]
         while(True):
             l = self.getLeft(i)
@@ -71,14 +73,15 @@ class HeapSort:
         n = len(A)
         i = n/2
         while (i>=0):
-            self.maxHeapify(A, i, n)
+            self.maxHeapifyNew(A, i, n)
+            #self.maxHeapify(A, i, n)
             i -= 1
 
     def heapSort(self, A):
         i = len(A) - 1
         while(i >= 1):
             self.swap(A, i, 0)
-            self.maxHeapify(A, 0, i)
+            self.maxHeapifyNew(A, 0, i)
             i -= 1
 
 def showHeapSort(A):
