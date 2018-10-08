@@ -62,26 +62,24 @@ class QuickSort:
     def sort(self, A):
         self.quick_sort(A, 0, len(A)-1)
 
+def showQuickSort(A):
+    s = QuickSort()
+    print A
+    s.sort(A)
+    print A
+
 if __name__ == '__main__':
     s = QuickSort()
     print '-------case 1---------'
     A = [2, 3, 1, 4]
-    print A
-    s.sort(A)
-    print A
+    showQuickSort(A)
     print '-------case 2---------'
     A = []
-    print A
-    s.sort(A)
-    print A
+    showQuickSort(A)
     print '-------case 3---------'
     A = [1]
-    print A
-    s.sort(A)
-    print A
+    showQuickSort(A)
     print '-------case 4---------'
     A = [1,2,1]
-    print A
-    s.sort(A)
-    print A
+    showQuickSort(A)
 
