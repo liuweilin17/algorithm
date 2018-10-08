@@ -5,6 +5,14 @@
 # Mail: liuweilin17@qq.com
 # Created Time: Fri Oct  5 19:52:38 2018
 ###########################################
+
+# QuickSort
+# 1.worst case: T(n) = T(n-1) + T(0) + Θ(n) => T(n)=O(n²)
+# 2.Best case: T(n) = 2T(n/2) + Θ(n) => T(n) = O(nlogn)
+# 3.Balanced case: T(n) = T(n*(1/a)) + T(n*(1-1/a)) => T(n)=O(nlogn), for all a>=1
+# 4.in place sort
+# 5.unstable
+
 #coding=utf-8
 #!/usr/bin/python
 
@@ -69,7 +77,6 @@ def showQuickSort(A):
     print A
 
 if __name__ == '__main__':
-    s = QuickSort()
     print '-------case 1---------'
     A = [2, 3, 1, 4]
     showQuickSort(A)

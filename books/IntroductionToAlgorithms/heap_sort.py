@@ -4,6 +4,8 @@
 # Author: Weilin Liu
 # Mail: liuweilin17@qq.com
 # Created Time: Fri Oct  5 15:36:14 2018
+###########################################
+
 # HeapSort in Introduction to Algorithms
 # Heap is a nearly complete binary tree, namely complete except the leaves layer
 # mapHeapify: O(logn)
@@ -12,12 +14,12 @@
 # 1. worst case O(nlogn)
 # 2. in-place sort
 # 3. unstable. For example, a max heap, last two leaves are 0,0. After the swap and heapifiy,
-# the last 0 probably in the front of the second 0
-###########################################
-#coding=utf-8
-#!/usr/bin/python 
-
 # max heap
+# the last 0 probably in the front of the second 0
+
+#coding=utf-8
+#!/usr/bin/python
+
 class HeapSort:
     def getLeft(self, i):
         return 2*i + 1
