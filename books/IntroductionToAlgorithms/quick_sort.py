@@ -1,3 +1,4 @@
+# coding=utf-8
 ###########################################
 # Let's Have Some Fun
 # File Name: quick_sort.py
@@ -5,6 +6,7 @@
 # Mail: liuweilin17@qq.com
 # Created Time: Fri Oct  5 19:52:38 2018
 ###########################################
+#!/usr/bin/python
 
 # QuickSort
 # 1.worst case: T(n) = T(n-1) + T(0) + Θ(n) => T(n)=O(n²)
@@ -13,8 +15,6 @@
 # 4.in place sort
 # 5.unstable
 
-#coding=utf-8
-#!/usr/bin/python
 
 import random
 
@@ -70,6 +70,20 @@ class QuickSort:
     def sort(self, A):
         self.quick_sort(A, 0, len(A)-1)
 
+    def findIth(self, A, p, r, i):
+        if p == r:
+            return A[p]
+        q = self.partition1(A, p, r)
+        k = q - p + 1
+        if i > r - p + 1:
+            return
+        if k == i:
+            return A[q]
+        elif k > i:
+            return self.findIth(A, p, q-1, i)
+        else:
+            return self.findIth(A, q+1, r, i-k)
+
 def showQuickSort(A):
     s = QuickSort()
     print A
@@ -89,4 +103,11 @@ if __name__ == '__main__':
     print '-------case 4---------'
     A = [1,2,1]
     showQuickSort(A)
+
+    print '-------find kth ------'
+    s = QuickSort()
+    A = [4, 1, 5, 2, 3, 3]
+    print s.findIth(A, 0, len(A)-1, 100)
+    print s.findIth(A, 0, len(A)-1, 1)
+    print s.findIth(A, 0, len(A)-1, 3)
 
