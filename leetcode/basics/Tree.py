@@ -5,7 +5,7 @@ class TreeNode:
         self.right = None
 
 class BinaryTree:
-    def __init__(self, x): # x is a list
+    def __init__(self, x): # x is an array of elements
         self.root = self.makeTree(0,x)
 
     def makeTree(self, ind, x):
