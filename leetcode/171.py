@@ -19,6 +19,7 @@ class Solution(object):
         res = 0
         l = len(s)
         for i in range(l):
+            # ord(): get the ascii value of character
             tmp = ord(s[i]) - ord('A') + 1
             res = res * 26 + tmp
         return res
