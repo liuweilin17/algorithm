@@ -1,3 +1,5 @@
+import queue
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -19,5 +21,28 @@ class BinaryTree:
 
     def getRoot(self):
         return self.root
+
+def printTree(root):
+    if root == None:
+        return None
+    q = queue.Queue()
+    q.put(root)
+    count = 1
+    depth = 0
+    while not q.empty():
+        nd = q.get()
+        if nd != None:
+            print(str(nd.val) + ', ', end='')
+        else:
+            print('null, ', end='')
+        count -= 1
+        if nd:
+            q.put(nd.left)
+            q.put(nd.right)
+        if count == 0:
+            count = q.qsize()
+            print('')
+            depth += 1
+
 
 
