@@ -7,7 +7,7 @@
 ###########################################
 #coding=utf-8
 #!/usr/bin/python
-
+import sys
 # 121. Best Time to Buy and Sell Stock
 # 解题思路：
 # 遍历数组，记录当前最大值和最小值以及位置
@@ -42,12 +42,26 @@ class Solution(object):
                     maxV = prices[i]
                     maxP = i 
         return maxPro if maxPro > maxV-minV else maxV-minV
-
+    # simple version
+    def maxProfit1(self, prices):
+        maxProfit = 0
+        minP = sys.maxsize
+        for p in prices:
+            if p<minP:
+                minP = p
+            else:
+                tmp = p - minP
+                if tmp > maxProfit:
+                    maxProfit = tmp
+        return maxProfit
 if __name__ == '__main__':
     s = Solution()
     prices = [7,1,5,3,6,4]
-    print s.maxProfit(prices)
+    print(s.maxProfit(prices))
+    print(s.maxProfit1(prices))
     prices = [7,6,4,3,1]
-    print s.maxProfit(prices)
+    print(s.maxProfit(prices))
+    print(s.maxProfit1(prices))
     prices = [2,4,1]
-    print s.maxProfit(prices)
+    print(s.maxProfit(prices))
+    print(s.maxProfit1(prices))
