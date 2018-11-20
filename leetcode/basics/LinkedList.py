@@ -9,7 +9,7 @@ class LinkedList:
         if l < 1:
             return None
         else:
-            self.head = ListNode(l)
+            self.head = ListNode(x[0])
             self.tail = self.head
             for i in range(1, l):
                 nd = ListNode(x[i])
@@ -21,3 +21,9 @@ class LinkedList:
     
     def getTail(self):
         return self.tail
+
+    def printList(self):
+        p = self.head
+        while(p):
+            print(p.val, end=' ')
+            p = p.next
