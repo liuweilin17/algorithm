@@ -13,4 +13,6 @@
 # 6. tree
 
 # 7. string
+c = 'A'
+print(c.lower())
 
