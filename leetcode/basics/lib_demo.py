@@ -11,3 +11,6 @@
 # 5. heap
 
 # 6. tree
+
+# 7. string
+
