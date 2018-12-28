@@ -22,7 +22,9 @@ class BinaryTree:
     def getRoot(self):
         return self.root
 
-def printTree(root):
+# traverse with BFS
+# each line represents a layer in tree(by count !!!)
+def printTreeBFS(root):
     if root == None:
         return None
     q = queue.Queue()
