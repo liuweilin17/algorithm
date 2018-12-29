@@ -8,7 +8,10 @@ regular python3 lib
 # SORT
 # sort the index based on the value
 A = [7,2,5,4]
+B = [2,1,4,3]
 print(sorted(range(len(A)), key=A.__getitem__))
+# sort A based on B
+print([ x for x,y in sorted(zip(A,B), key=lambda x:x[1])])
 
 # DATA STRUCTURE
 # set is HashSet and dict is HashMap
