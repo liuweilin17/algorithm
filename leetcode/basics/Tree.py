@@ -23,6 +23,8 @@ class BinaryTree:
         return self.root
 
 # traverse with BFS
+# use Queue
+# put root first
 # each line represents a layer in tree(by count !!!)
 def printTreeBFS(root):
     if root == None:
@@ -45,6 +47,26 @@ def printTreeBFS(root):
             count = q.qsize()
             print('')
             depth += 1
+
+def printTreePreOrder(root):
+    pass
+
+def printTreeInOrder(root):
+    if root == None: return None
+    stk = []
+    nd = root
+    while nd or len(stk):
+        while nd:
+            stk.append(nd)
+            nd = nd.left
+        nd = stk.pop()
+        print(nd.val, end=',')
+        nd = nd.right
+
+def printTreePostOrder(root):
+    pass
+
+
 
 
 
