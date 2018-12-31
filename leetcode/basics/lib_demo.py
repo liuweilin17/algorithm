@@ -1,5 +1,6 @@
 import collections
 import itertools
+import heapq
 
 '''
 regular python3 lib
@@ -9,12 +10,25 @@ regular python3 lib
 # sort the index based on the value
 A = [7,2,5,4]
 B = [2,1,4,3]
+C = [1,1,2,2,2,3,3]
+D = {'a':3,'b':2,'c':1}
 print(sorted(range(len(A)), key=A.__getitem__))
 # sort A based on B
 print([ x for x,y in sorted(zip(A,B), key=lambda x:x[1])])
+# sort key based on value in dict
+print(sorted(D.keys(), key=D.get))
 
 # DATA STRUCTURE
 # set is HashSet and dict is HashMap
+
+# heap
+heapq.heapify(A) # build heap
+print(A)
+heapq.heappop(A) # pop root
+print(A)
+dt = collections.Counter(C)
+print(heapq.nlargest(2, dt.keys(), key=dt.get))
+print(heapq.nsmallest(2, dt.keys(), key=dt.get))
 
 # STRING
 c = 'A'
@@ -26,8 +40,7 @@ minV = float('-inf')
 maxV = float('inf')
 
 # collections
-A = [1,1,2,2,2]
-count = collections.Counter(A)
+count = collections.Counter(C)
 print(count)
 
 
