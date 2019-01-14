@@ -9,7 +9,7 @@
 #!/usr/bin/python
 
 # Ecopia interview question 1
-# given a binary tree, find
+# given a binary tree, find maximum sum of nodes in the path from root to leaves
 
 # Definition for a binary tree node.
 # class TreeNode:
