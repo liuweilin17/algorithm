@@ -7,6 +7,7 @@
 ###########################################
 #coding=utf-8
 #!/usr/bin/python
+
 # 28. Implement strStr()
 
 class Solution(object):
@@ -19,7 +20,7 @@ class Solution(object):
         return haystack.find(needle)
 
     # use KMP algorithm
-    # the KMP could be found in the CLRS
+    # the KMP could be found in the CLRS P1002
     # it is interesting
     def strStr1(self, haystack, needle):
         """

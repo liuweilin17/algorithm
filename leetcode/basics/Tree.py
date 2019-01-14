@@ -27,8 +27,8 @@ class BinaryTree:
 # put root first
 # each line represents a layer in tree(by count !!!)
 def printTreeBFS(root):
-    if root == None:
-        return None
+    if not root:
+        return
     q = queue.Queue()
     q.put(root)
     count = 1
@@ -38,7 +38,8 @@ def printTreeBFS(root):
         if nd != None:
             print(str(nd.val) + ', ', end='')
         else:
-            print('null, ', end='')
+            #print('null, ', end='')
+            pass
         count -= 1
         if nd:
             q.put(nd.left)
@@ -48,11 +49,65 @@ def printTreeBFS(root):
             print('')
             depth += 1
 
-def printTreePreOrder(root):
-    pass
+def printTreePreOrderRec(root):
+    if root:
+        print(root.val, end=',')
+        if root.left:
+            printTreePreOrderRec(root.left)
+        if root.right:
+            printTreePreOrderRec(root.right)
 
+def printTreeInOrderRec(root):
+    if root:
+        if root.left:
+            printTreeInOrderRec(root.left)
+        print(root.val, end=',')
+        if root.right:
+            printTreeInOrderRec(root.right)
+
+def printTreePostOrderRec(root):
+    if root:
+        if root.left:
+            printTreePostOrderRec(root.left)
+        if root.right:
+            printTreePostOrderRec(root.right)
+        print(root.val, end=',')
+
+# Try not to memorize the code but understand
+def printTreePreOrder(root):
+    if not root:
+        return
+    st = []
+    st.append(root)
+    while len(st):
+        nd = st.pop()
+        while nd:
+            print(nd.val, end=',')
+            if nd.right:
+                st.append(nd.right)
+            nd = nd.left
+    print('')
+
+# This a version easy to understand
+# And is quite similar to BFS
+# And is easier to be used for DFS
+def printTreePreOrder1(root):
+    if not root:
+        return
+    st = []
+    st.append(root)
+    while len(st):
+        nd = st.pop()
+        print(nd.val, end=',')
+        if nd.right:
+            st.append(nd.right)
+        if nd.left:
+            st.append(nd.left)
+    print('')
+
+# This is final version
 def printTreeInOrder(root):
-    if root == None: return None
+    if not root: return None
     stk = []
     nd = root
     while nd or len(stk):
@@ -62,6 +117,24 @@ def printTreeInOrder(root):
         nd = stk.pop()
         print(nd.val, end=',')
         nd = nd.right
+    print('')
+
+# This is similar to printTreeInOrder, which easier to understand
+def printTreeInOrder1(root):
+    if not root: return
+    st = []
+    nd = root
+    while len(st) or nd:
+        while nd:
+            st.append(nd)
+            nd = nd.left
+        nd = st.pop()
+        print(nd.val, end=',')
+        if nd.right:
+            nd = nd.right
+        else:
+            nd = None
+    print('')
 
 def printTreePostOrder(root):
     pass

@@ -45,6 +45,7 @@ print(count)
 
 
 # itertools
+# itertools.combinations()
 A = [[1,2],[1,3],[1,4]]
 for i,j in itertools.permutations(A, 2):
     print(i, end=',')
