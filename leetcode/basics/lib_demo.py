@@ -19,6 +19,13 @@ print([ x for x,y in sorted(zip(A,B), key=lambda x:x[1])])
 print(sorted(D.keys(), key=D.get))
 
 # DATA STRUCTURE
+# array
+a = [1,2,3]
+b = [1,2,3]
+print(reversed(a))
+b.reverse()
+print(b)
+
 # set is HashSet and dict is HashMap
 
 # heap
@@ -33,6 +40,7 @@ print(heapq.nsmallest(2, dt.keys(), key=dt.get))
 # STRING
 c = 'A'
 print(c.lower())
+print(c.islower())
 
 # MATH
 # infinity
