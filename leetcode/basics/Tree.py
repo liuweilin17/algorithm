@@ -25,103 +25,84 @@ class BinaryTree:
 # traverse with BFS
 # use Queue
 # put root first
-# each line represents a layer in tree(by count !!!)
-def printTreeBFS(root):
+def breadthFirstTraversal(root):
     if not root:
         return
+    ret = []
     q = queue.Queue()
     q.put(root)
-    count = 1
-    depth = 0
     while not q.empty():
-        nd = q.get()
-        if nd != None:
-            print(str(nd.val) + ', ', end='')
-        else:
-            #print('null, ', end='')
-            pass
-        count -= 1
+        count = q.qsize()
+        seq = []
+        for i in range(count):
+            nd = q.get()
+            seq.append(nd.val)
+            if nd.left: q.put(nd.left)
+            if nd.right: q.put(nd.right)
+        ret.append(seq[:])
+    return ret
+
+# preorder DFS
+# recursive version, easy
+def preOrderTraversalRec(root):
+    def dfs(nd, ret):
         if nd:
-            q.put(nd.left)
-            q.put(nd.right)
-        if count == 0:
-            count = q.qsize()
-            print('')
-            depth += 1
+            ret.append(nd.val)
+            if nd.left: dfs(nd.left, ret)
+            if nd.right: dfs(nd.right, ret)
+    ret = []
+    dfs(root, ret)
+    return ret
 
-def printTreePreOrderRec(root):
-    if root:
-        print(root.val, end=',')
-        if root.left:
-            printTreePreOrderRec(root.left)
-        if root.right:
-            printTreePreOrderRec(root.right)
-
-def printTreeInOrderRec(root):
-    if root:
-        if root.left:
-            printTreeInOrderRec(root.left)
-        print(root.val, end=',')
-        if root.right:
-            printTreeInOrderRec(root.right)
-
-def printTreePostOrderRec(root):
-    if root:
-        if root.left:
-            printTreePostOrderRec(root.left)
-        if root.right:
-            printTreePostOrderRec(root.right)
-        print(root.val, end=',')
-
-# Try not to memorize the code but understand
-def printTreePreOrder(root):
-    if not root:
-        return
+# preorder DFS
+# use Stack
+# iterative version1, easy to understand
+def preOrderTraversalIter1(root):
+    if not root: return []
+    ret = []
     st = []
     st.append(root)
     while len(st):
         nd = st.pop()
-        while nd:
-            print(nd.val, end=',')
-            if nd.right:
-                st.append(nd.right)
-            nd = nd.left
-    print('')
+        ret.append(nd.val)
+        if nd.right: st.append(nd.right)
+        if nd.left: st.append(nd.left)
+    return ret
 
-# This a version easy to understand
-# And is quite similar to BFS
-# And is easier to be used for DFS
-def printTreePreOrder1(root):
-    if not root:
-        return
-    st = []
-    st.append(root)
+# preorder DFS
+# use Stack
+# iterative version2, visit all the left and add the right node to the stack
+def preOrderTraversalIter2(root):
+    if not root: return []
+    ret = []
+    st = [root]
     while len(st):
         nd = st.pop()
-        print(nd.val, end=',')
-        if nd.right:
-            st.append(nd.right)
-        if nd.left:
-            st.append(nd.left)
-    print('')
-
-# This is final version
-def printTreeInOrder(root):
-    if not root: return None
-    stk = []
-    nd = root
-    while nd or len(stk):
         while nd:
-            stk.append(nd)
+            ret.append(nd.val)
+            if nd.right: st.append(nd.right)
             nd = nd.left
-        nd = stk.pop()
-        print(nd.val, end=',')
-        nd = nd.right
-    print('')
+    return ret
 
-# This is similar to printTreeInOrder, which easier to understand
-def printTreeInOrder1(root):
-    if not root: return
+# inorder DFS
+# recursive version, easy
+def inOrderTraversalRec(root):
+    def dfs(nd, ret):
+        if nd:
+            if nd.left: dfs(nd.left, ret)
+            ret.append(nd.val)
+            if nd.right: dfs(nd.right, ret)
+    ret = []
+    dfs(root, ret)
+    return ret
+
+# inorder DFS
+# iterative version
+# use Stack
+# keep visit the left child and then the right child
+def inOrderTraversalIter(root):
+    if not root: return []
+    ret = []
     st = []
     nd = root
     while len(st) or nd:
@@ -129,17 +110,87 @@ def printTreeInOrder1(root):
             st.append(nd)
             nd = nd.left
         nd = st.pop()
-        print(nd.val, end=',')
-        if nd.right:
-            nd = nd.right
+        ret.append(nd.val)
+        nd = nd.right
+    return ret
+
+# postorder DFS
+# recursive method, easy
+def postOrderTraversalRec(root):
+    def dfs(nd, ret):
+        if nd:
+            if nd.left: dfs(nd.left, ret)
+            if nd.right: dfs(nd.right, ret)
+            ret.append(nd.val)
+    ret = []
+    dfs(root, ret)
+    return ret
+
+# postorder DFS
+# use Stack
+# iterative version1, harder to understand
+def postOrderTraversalIter1(root):
+    if not root: return []
+    ret = []
+    st = []
+    nd = root
+    pre = None
+    while len(st) or nd:
+        while nd: # put left child in the stack
+            st.append(nd)
+            nd = nd.left
+        nd = st[-1]
+        if pre and nd.right == pre: # the right child of nd is visited
+            ret.append(nd.val)
+            st.pop()
+            pre = nd
+            nd = None # next nd obtained from the stack
         else:
-            nd = None
-    print('')
+            if not nd.right: # no right child
+                ret.append(nd.val)
+                st.pop()
+                pre = nd
+            nd = nd.right
+    return ret
 
-def printTreePostOrder(root):
-    pass
+# postorder DFS
+# use Stack
+# iterative version 2, reverse the result of preorder(root->right->left)
+def postorderTraversalIter2(root):
+    if not root: return []
+    ret = []
+    st = []
+    st.append(root)
+    while len(st):
+        nd = st.pop()
+        ret.append(nd.val)
+        if nd.left: st.append(nd.left)
+        if nd.right: st.append(nd.right)
+    return ret[::-1] # reverse
 
+# !!! reverse the result of preorder(root->right->left) !!!!
+def printTreePostOrder2(root):
+    if not root: return
+    st = []
+    ret = []
+    st.append(root)
+    while len(st):
+        nd = st.pop()
+        print(nd.val, ',')
+        if nd.left: st.append(nd.left)
+        if nd.right: st.append(nd.right)
 
+if __name__ == '__main__':
+    t = BinaryTree([1, 2, 3, 'null', 'null', 4, 5])
+    print(breadthFirstTraversal(t.root))
+    print(preOrderTraversalRec(t.root))
+    print(preOrderTraversalIter1(t.root))
+    print(preOrderTraversalIter2(t.root))
+    print(inOrderTraversalRec(t.root))
+    print(inOrderTraversalIter(t.root))
+    print(postOrderTraversalRec(t.root))
+    print(postOrderTraversalIter1(t.root))
+    print(postorderTraversalIter2(t.root))
 
 
 
