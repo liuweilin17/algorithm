@@ -67,7 +67,10 @@ print("abs:%s" %(abs(a1)))
 # scientific notation
 print(1e-7)
 
-# other
+# BIT
+print(ord('a'))
+
+# OTHER
 # map(func, list), run func(ele) for ele in list
 points = [[1,2],[2,1],[1,0],[0,1]]
 points = set(map(tuple, points))
