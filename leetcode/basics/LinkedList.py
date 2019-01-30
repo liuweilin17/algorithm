@@ -22,8 +22,8 @@ class LinkedList:
     def getTail(self):
         return self.tail
 
-    def printList(self):
-        p = self.head
-        while(p):
-            print(p.val, end=' ')
-            p = p.next
+def printList(head):
+    p = head
+    while(p):
+        print(p.val, end=' ')
+        p = p.next
