@@ -1,3 +1,4 @@
+import sys
 import collections
 import itertools
 import heapq
@@ -18,6 +19,10 @@ def testSort():
     print([ x for x,y in sorted(zip(A,B), key=lambda x:x[1])])
     # sort key based on value in dict
     print(sorted(D.keys(), key=D.get))
+    # sort array based on two values
+    C = [(2,1),(1,3),(1,-1),(2,-3)]
+    print(sorted(C, key=lambda x:(x[0],x[1]))) # sort by v1 and v2(v1 prioritize over v2, both ascending)
+    print(sorted(C, key=lambda x:(-x[0],x[1]))) # sort by v1 and v2(v1 prioritize over v2, but v1 descending)
 
 # DATA STRUCTURE
 def testArray():
@@ -57,7 +62,8 @@ def testLower():
 def testInf():
     minV = float('-inf')
     maxV = float('inf')
-    print('{1},{2}').format(minV, maxV)
+    maxInt = sys.maxsize
+    print('{0},{1},{2}'.format(minV, maxV, maxInt))
 
 def testCollections():
     C = [1, 1, 2, 2, 2, 3, 3]
@@ -97,4 +103,4 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testBit()
+    testInf()
