@@ -3,6 +3,7 @@ import collections
 import itertools
 import heapq
 import random
+import string
 
 '''
 regular python3 lib
@@ -58,6 +59,12 @@ def testLower():
     print(c.lower())
     print(c.islower())
 
+def testString():
+    # in python3
+    print(string.ascii_letters)
+    print(string.ascii_lowercase)
+    print(string.ascii_uppercase)
+
 # MATH
 def testInf():
     minV = float('-inf')
@@ -103,4 +110,4 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testInf()
+    testString()
