@@ -4,6 +4,7 @@ import itertools
 import heapq
 import random
 import string
+from queue import Queue
 
 '''
 regular python3 lib
@@ -41,6 +42,13 @@ def testSet():
 def testMap():
     # dict is HashMap
     pass
+
+def testQueue():
+    Q = Queue()
+    Q.put(1)
+    Q.put(2)
+    while not Q.empty():
+        print(Q.get())
 
 def testHeap():
     A = [7, 2, 5, 4]
@@ -110,4 +118,4 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testString()
+    testQueue()
