@@ -84,6 +84,10 @@ def testCollections():
     C = [1, 1, 2, 2, 2, 3, 3]
     count = collections.Counter(C)
     print(count)
+    dt = collections.defaultdict(list) # value is list
+    dt['a'].append(1)
+    dt['b'].append(2)
+    print(dt)
 
 def testRandom():
     print(random.randint(2,3)) # random values from [2,3]
@@ -118,4 +122,4 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testQueue()
+    testCollections()
