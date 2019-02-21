@@ -66,6 +66,8 @@ def testLower():
     c = 'A'
     print(c.lower())
     print(c.islower())
+    print(ord('a'))
+    print(chr('a'+3))
 
 def testString():
     # in python3
