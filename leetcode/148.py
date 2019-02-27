@@ -41,8 +41,8 @@ class Solution:
                         l3.next = l2
                         l2 = l2.next
                     l3 = l3.next
-                if l1: l3.next = l1
-                if l2: l3.next = l2
+                if l1: l3.next = l1 # no not!!!
+                if l2: l3.next = l2 # no not!!!
                 return ret
 
             elif l1:
@@ -52,6 +52,8 @@ class Solution:
 
         if not head or not head.next: return head
         # cut the head into two halves
+        # pre is necessary, if we use slow to split the list, it will result in untermination.
+        # in the case of two nodes in a linked list
         pre, slow, fast = None, head, head
         while slow and fast and fast.next:
             pre = slow
