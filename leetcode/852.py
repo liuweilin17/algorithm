@@ -40,5 +40,15 @@ class Solution:
                 high = mid
         return (low + high) // 2 # or low
 
-
+    def peakIndexInMountainArray3(self, A: List[int]) -> int:
+        N = len(A)
+        low, high = 0, N-1
+        while low <= high:
+            mid = (low + high) // 2
+            if A[mid] > A[mid-1] and A[mid] > A[mid+1]:
+                return mid
+            elif A[mid] < A[mid - 1]:
+                high = mid - 1
+            else:
+                low = mid + 1
 
