@@ -113,7 +113,9 @@ def testScientific():
 
 def testBit():
     # BIT
-    print(ord('a'))
+    print(ord('a')) # get the ascii value of a character
+    print(chr(97)) # get the char based on ascii value
+    print(bin(6)[2:]) # get the binary of string of an integer
 
 # OTHER
 def testMap1():
@@ -124,4 +126,4 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testCollections()
+    testBit()
