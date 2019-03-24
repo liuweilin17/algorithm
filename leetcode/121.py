@@ -42,18 +42,21 @@ class Solution(object):
                     maxV = prices[i]
                     maxP = i 
         return maxPro if maxPro > maxV-minV else maxV-minV
+    
     # simple version
     def maxProfit1(self, prices):
         maxProfit = 0
         minP = sys.maxsize
         for p in prices:
-            if p<minP:
+            if p < minP:
                 minP = p
             else:
                 tmp = p - minP
                 if tmp > maxProfit:
                     maxProfit = tmp
         return maxProfit
+
+
 if __name__ == '__main__':
     s = Solution()
     prices = [7,1,5,3,6,4]
