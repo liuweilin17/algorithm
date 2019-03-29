@@ -111,6 +111,7 @@ def inOrderTraversalIter(root):
             nd = nd.left
         nd = st.pop()
         ret.append(nd.val)
+        # left and root has been visited, we turn to traverse right child
         nd = nd.right
     return ret
 

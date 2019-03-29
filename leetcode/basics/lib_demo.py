@@ -74,6 +74,9 @@ def testString():
     print(string.ascii_letters)
     print(string.ascii_lowercase)
     print(string.ascii_uppercase)
+    a = 'll'
+    b = 'hello'
+    print(b.find(a))
 
 # MATH
 def testInf():
@@ -126,4 +129,4 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testBit()
+    testString()

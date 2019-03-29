@@ -38,12 +38,10 @@ class Solution:
                 else:
                     pos = dt[intervals_sort[mid]]
                     break
-            if high < 0 or low >= N:
-                pos = -1
-            elif high == mid - 1:
-                pos = dt[intervals_sort[mid]]
-            elif low == mid + 1:
-                pos = dt[intervals_sort[mid+1]]
+            # low is the position
+            if pos == -1:
+                if low != N: pos = dt[intervals_sort[low]]
+            
             ret.append(pos)
 
         return ret
