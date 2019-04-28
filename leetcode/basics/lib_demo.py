@@ -120,6 +120,23 @@ def testBit():
     print(chr(97)) # get the char based on ascii value
     print(bin(6)[2:]) # get the binary of string of an integer
 
+# INPUT & OUTPUT
+def testOutput():
+    a = 2.123
+    a1 = round(a)
+    a2 = round(a,2)
+    print(a1, a2)
+
+def testInput():
+    # N is array size input by user
+    # a is a array with N elements input by user
+    N = input()  # input method simply return a string when user press enter
+    a = []
+    for i in range(int(N)):
+        a.append(input())
+    print(N)
+    print(a)
+
 # OTHER
 def testMap1():
     # map(func, list), run func(ele) for ele in list
@@ -129,4 +146,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testString()
+    testInput()
+
