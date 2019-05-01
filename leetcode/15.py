@@ -11,7 +11,26 @@
 # 15. 3Sum
 
 class Solution:
-    def threeSum(self, nums):
+    # easy to come up with, but extra space
+    def threeSum1(self, nums: List[int]) -> List[List[int]]:
+        dt = {}
+        N = len(nums)
+        if N == 0: return []
+        nums.sort()
+        for i in range(N):
+            dt[nums[i]] = i
+            
+        res = []
+        for i in range(N):
+            for j in range(i+1, N):
+                t = -nums[i]-nums[j] 
+                if t in dt and dt[t] > j:
+                    res.append((nums[i], nums[j], t))
+                    
+        return list(set(res))
+    
+    # no extra space
+    def threeSum2(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]

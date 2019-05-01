@@ -22,7 +22,7 @@ class Solution:
         :rtype: bool
         """
         # in order traversal
-        if not root:
+        if not root: # this is interesting
             return True
         st = []
         nd = root
@@ -33,7 +33,7 @@ class Solution:
                 nd = nd.left
             nd = st.pop()
             if pre != None: # can't use 'if pre', cause pre could be int(0)
-                if nd.val <= pre:
+                if nd.val <= pre: # notice it should be <= rather than <
                     return False
             pre = nd.val
             nd = nd.right
