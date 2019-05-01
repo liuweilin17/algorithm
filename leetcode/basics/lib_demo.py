@@ -11,6 +11,10 @@ regular python3 lib
 '''
 
 # SORT
+class largerNum(tuple):
+    def __lt__(tp1, tp2):
+        return tp1[0] < tp2[0]
+
 def testSort():
     # sort the index based on the value
     A = [7,2,5,4]
@@ -25,6 +29,8 @@ def testSort():
     C = [(2,1),(1,3),(1,-1),(2,-3)]
     print(sorted(C, key=lambda x:(x[0],x[1]))) # sort by v1 and v2(v1 prioritize over v2, both ascending)
     print(sorted(C, key=lambda x:(-x[0],x[1]))) # sort by v1 and v2(v1 prioritize over v2, but v1 descending)
+
+    print(sorted(C, key=largerNum)) # sort by x[0]
 
 # DATA STRUCTURE
 def testArray():
@@ -146,5 +152,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testInput()
+    testSort()
 
