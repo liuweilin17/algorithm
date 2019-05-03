@@ -30,21 +30,21 @@ class CountingSort:
 
 def showCountingSort(A):
     s = CountingSort()
-    print A
+    print(A)
     B = s.sort(A, 10)
-    print B
+    print(B)
 
 
 if __name__ == '__main__':
-    print '-------case 1---------'
+    print('-------case 1---------')
     A = [2, 3, 1, 4]
     showCountingSort(A)
-    print '-------case 2---------'
+    print('-------case 2---------')
     A = []
     showCountingSort(A)
-    print '-------case 3---------'
+    print('-------case 3---------')
     A = [1]
     showCountingSort(A)
-    print '-------case 4---------'
+    print('-------case 4---------')
     A = [1,2,1]
     showCountingSort(A)

@@ -62,10 +62,19 @@ def testHeap():
     print(A)
     heapq.heappop(A) # pop root
     print(A)
-    heapq.heappush(1) # push
+
     dt = collections.Counter(A)
     print(heapq.nlargest(2, dt.keys(), key=dt.get))
     print(heapq.nsmallest(2, dt.keys(), key=dt.get))
+
+    A = [(1, 3), (2, 2), (3, 1)]
+    print(A)
+    heapq.heapify(A)
+    print(A)
+    print(heapq.heappop(A))
+    print(A)
+
+
 
 # STRING
 def testLower():
@@ -152,5 +161,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testSort()
+    testHeap()
 

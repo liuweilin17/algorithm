@@ -6,7 +6,7 @@ To READERS:
     I found the book is really comprehensive, well-organized and gives detailed explanation of
     algorithms and structures.
     Therefore, I found it really meaningful to implement the pseudocode in the book.
-    And the codes in this diretory are in Python2.7 versions.
+    And the codes in this diretory are in Python3 versions.
     P.S, some pseudocode are optimized. And I will try to maintain the original version
     in the same time.
 

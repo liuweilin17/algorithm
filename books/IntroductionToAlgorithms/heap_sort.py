@@ -74,7 +74,7 @@ class HeapSort:
         # if n is even, i < (n - 1) / 2 = n / 2 - 1
         # so, when i<n/2, satisfies two ifs.
         n = len(A)
-        i = n/2
+        i = n//2
         while (i>=0):
             self.maxHeapifyNew(A, i, n)
             #self.maxHeapify(A, i, n)
@@ -89,23 +89,23 @@ class HeapSort:
 
 def showHeapSort(A):
     s = HeapSort()
-    print A
+    print(A)
     s.buildMaxHeap(A)
-    print A
+    print(A)
     s.heapSort(A)
-    print A
+    print(A)
 
 if __name__ == '__main__':
     s = HeapSort()
-    print '-------case 1---------'
+    print('-------case 1---------')
     A = [2, 3, 1, 4]
     showHeapSort(A)
-    print '-------case 2---------'
+    print('-------case 2---------')
     A = []
     showHeapSort(A)
-    print '-------case 3---------'
+    print('-------case 3---------')
     A = [1]
     showHeapSort(A)
-    print '-------case 4---------'
+    print('-------case 4---------')
     A = [1,2,1]
     showHeapSort(A)

@@ -86,28 +86,28 @@ class QuickSort:
 
 def showQuickSort(A):
     s = QuickSort()
-    print A
+    print(A)
     s.sort(A)
-    print A
+    print(A)
 
 if __name__ == '__main__':
-    print '-------case 1---------'
+    print('-------case 1---------')
     A = [2, 3, 1, 4]
     showQuickSort(A)
-    print '-------case 2---------'
+    print('-------case 2---------')
     A = []
     showQuickSort(A)
-    print '-------case 3---------'
+    print('-------case 3---------')
     A = [1]
     showQuickSort(A)
-    print '-------case 4---------'
+    print('-------case 4---------')
     A = [1,2,1]
     showQuickSort(A)
 
-    print '-------find kth ------'
+    print('-------find kth ------')
     s = QuickSort()
     A = [4, 1, 5, 2, 3, 3]
-    print s.findIth(A, 0, len(A)-1, 100)
-    print s.findIth(A, 0, len(A)-1, 1)
-    print s.findIth(A, 0, len(A)-1, 3)
+    print(s.findIth(A, 0, len(A)-1, 100))
+    print(s.findIth(A, 0, len(A)-1, 1))
+    print(s.findIth(A, 0, len(A)-1, 3))
 
