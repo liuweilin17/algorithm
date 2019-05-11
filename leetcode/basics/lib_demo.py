@@ -84,6 +84,16 @@ def testLower():
     print(ord('a'))
     print(chr('a'+3))
 
+def testUpper():
+    c = 'a'
+    print(c.upper())
+    print(c.isupper())      
+
+def testDigit():
+    a, b = '3', 'x'
+    print(a, a.isdigit())
+    print(b, b.isdigit())
+
 def testString():
     # in python3
     print(string.ascii_letters)
@@ -161,5 +171,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testHeap()
+    testSort()
 
