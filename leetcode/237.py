@@ -17,7 +17,7 @@ from basics.LinkedList import *
 #         self.next = None
 
 class Solution:
-    def deleteNode(self, node):
+    def deleteNode1(self, node):
         """
         :type node: ListNode
         :rtype: void Do not return anything, modify node in-place instead.
@@ -29,3 +29,16 @@ class Solution:
             del tmp
         else:
             del node
+
+    def deleteNode2(self, node):
+        """
+        :type node: ListNode
+        :rtype: void Do not return anything, modify node in-place instead.
+        """
+        p, q = node, node.next
+        while p and q:
+            p.val = q.val
+            if q.next == None:
+                p.next = None
+            p = q
+            q = q.next

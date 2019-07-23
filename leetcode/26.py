@@ -11,7 +11,7 @@
 #26. Remove Duplicates from Sorted Array
 
 class Solution(object):
-    def removeDuplicates(self, nums):
+    def removeDuplicates1(self, nums):
         """
         :type nums: List[int]
         :rtype: int
@@ -23,6 +23,15 @@ class Solution(object):
                 i += 1
                 nums[i] = nums[j]
         return i+1
+    def removeDuplicates2(self, nums: List[int]) -> int:
+        if not nums: return 0
+        i = 0 # position of last induplicate element
+        for j in range(len(nums)):
+            if nums[j] != nums[i]:
+                i += 1
+                nums[i] = nums[j]
+        return i+1
+
 
 if __name__ == '__main__':
     s = Solution()

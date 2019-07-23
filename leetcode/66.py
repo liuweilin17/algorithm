@@ -10,7 +10,7 @@
 
 #66. Plus One
 class Solution(object):
-    def plusOne(self, digits):
+    def plusOne1(self, digits):
         """
         :type digits: List[int]
         :rtype: List[int]
@@ -29,6 +29,20 @@ class Solution(object):
         #print(len(ret))
         ret.reverse()
         return ret
+
+    def plusOne2(self, digits: List[int]) -> List[int]:
+        digits[-1] += 1
+        for i in range(len(digits)-1, 0, -1):
+            t = digits[i]
+            digits[i] = t % 10
+            digits[i-1] += t // 10
+
+        if digits[0] > 9:
+            t = digits[0]
+            digits[0] = t % 10
+            digits.insert(0, t // 10)
+
+        return digits
 
 if __name__ == '__main__':
     s = Solution()

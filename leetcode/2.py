@@ -17,7 +17,7 @@
 #         self.next = None
 
 class Solution:
-    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
+    def addTwoNumbers1(self, l1: ListNode, l2: ListNode) -> ListNode:
         head = ListNode(-1)
         p = head
         b = 0
@@ -46,4 +46,22 @@ class Solution:
             p.next = ListNode(b)
 
         return head.next
+    
+    # neat version
+    def addTwoNumbers2(self, l1: ListNode, l2: ListNode) -> ListNode:
+        remain = 0
+        head = ListNode(0)
+        p = head
+        while l1 or l2:
+            a = l1.val if l1 else 0
+            b = l2.val if l2 else 0
+            sumV = remain + a + b
+            p.next = ListNode(sumV % 10)
+            p = p.next
+            remain = sumV // 10
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+        if remain:
+            p.next = ListNode(remain)
 
+        return head.next

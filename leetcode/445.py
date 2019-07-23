@@ -74,4 +74,30 @@ class Solution:
             
         return head
 
-
+    def addTwoNumbers3(self, l1: ListNode, l2: ListNode) -> ListNode:
+        st1 = []
+        st2 = []
+        while l1:
+            st1.append(l1.val)
+            l1 = l1.next
+        while l2:
+            st2.append(l2.val)
+            l2 = l2.next
+        remain = 0
+        head = None # add before head
+        while st1 or st2:
+            a = st1.pop() if st1 else 0
+            b = st2.pop() if st2 else 0
+            sumV = remain + a + b
+            nd = ListNode(sumV % 10)
+            if not head: head = nd
+            else:
+                nd.next = head
+                head = nd
+            remain = sumV // 10
+        if remain:
+            nd = ListNode(remain)
+            nd.next = head
+            head = nd
+        
+        return head
