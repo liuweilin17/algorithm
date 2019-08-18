@@ -34,7 +34,7 @@ class LinkedList(object):
             p = p.next
 
 class Solution(object):
-    def reverseList(self, head):
+    def reverseList1(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
@@ -63,6 +63,28 @@ class Solution(object):
             q.next = p
 
         return q
+
+    def reverseList2(self, head: ListNode) -> ListNode:
+        ret = None
+
+        # insert each node head ahead of ret
+        p = head
+        while p:
+            q = p.next
+            p.next = ret
+            ret = p
+            p = q
+
+        return ret
+
+    # recursive version
+    def reverseList3(self, head: ListNode) -> ListNode:
+        if not head or not head.next:
+            return head
+        p = self.reverseList(head.next)
+        head.next.next = head
+        head.next = None # Notice this is essential
+        return p
 
 if __name__ == '__main__':
     ls = LinkedList()

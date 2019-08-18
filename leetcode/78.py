@@ -20,6 +20,7 @@ class Solution:
         self.backtrack(nums, 0, [], ret)
         return ret
 
+    # subsets of begining with nums[start]
     def backtrack(self, nums, start, tmp, ret):
         ret.append(tmp[:])
         for i in range(start, len(nums)):

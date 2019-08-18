@@ -56,6 +56,19 @@ def testQueue():
     while not Q.empty():
         print(Q.get())
 
+def testDeque():
+    Q = collections.deque()
+    Q.append(1)
+    Q.append(2)
+    Q.appendleft(3)
+    Q.appendleft(4)
+    print(Q)
+    Q.pop()
+    print(Q)
+    Q.popleft()
+    print(Q)
+    
+
 def testHeap():
     A = [7, 2, 5, 4]
     heapq.heapify(A) # build heap
@@ -171,5 +184,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testSort()
+    testDeque()
 
