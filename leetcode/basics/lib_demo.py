@@ -41,6 +41,10 @@ def testArray():
     b.reverse()
     print(b)
 
+    c = [1,1,1,2,2,3]
+    print(c.count(2))
+    print(c.count(0))
+
 def testSet():
     # set is HashSet
     pass
@@ -184,5 +188,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testDeque()
+    testArray()
 
