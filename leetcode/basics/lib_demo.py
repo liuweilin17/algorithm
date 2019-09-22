@@ -5,6 +5,7 @@ import heapq
 import random
 import string
 from queue import Queue
+import math
 
 '''
 regular python3 lib
@@ -78,7 +79,7 @@ def testHeap():
     heapq.heapify(A) # build heap
     print(A)
     heapq.heappop(A) # pop root
-    print(A)
+    print(type(A), A)
 
     dt = collections.Counter(A)
     print(heapq.nlargest(2, dt.keys(), key=dt.get))
@@ -89,6 +90,8 @@ def testHeap():
     heapq.heapify(A)
     print(A)
     print(heapq.heappop(A))
+    print(A)
+    heapq.heappush(A, (0,0))
     print(A)
 
 
@@ -162,6 +165,16 @@ def testBit():
     print(chr(97)) # get the char based on ascii value
     print(bin(6)[2:]) # get the binary of string of an integer
 
+def testGCD():
+    a, b, c = 4, 6, 8
+    # greatest common divisor of a, b
+    print(math.gcd(a, b))
+    # least common multiple of a, b
+    ab = a*b//math.gcd(a, b)
+    print(ab)
+    # least common multiple of a, b, c 
+    print(ab * c // math.gcd(ab, c))
+
 # INPUT & OUTPUT
 def testOutput():
     a = 2.123
@@ -188,5 +201,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testArray()
+    testGCD()
 
