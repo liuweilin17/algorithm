@@ -16,6 +16,10 @@ class largerNum(tuple):
     def __lt__(tp1, tp2):
         return tp1[0] < tp2[0]
 
+class largerStr(str):
+    def __lt__(s1, s2):
+        return s1 > s2
+
 def testSort():
     # sort the index based on the value
     A = [7,2,5,4]
@@ -93,7 +97,10 @@ def testHeap():
     print(A)
     heapq.heappush(A, (0,0))
     print(A)
-
+    
+    A = ['aba', 'abb', 'abc']
+    heapq.heapify(A, key=largerStr)
+    print(A)
 
 
 # STRING
@@ -201,5 +208,5 @@ def testMap1():
 
 if __name__ == '__main__':
     #test
-    testGCD()
+    testHeap()
 
