@@ -12,6 +12,22 @@
 
 class Solution:
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        N = len(nums)
+        sum_v = 0
+        dt = collections.defaultdict(int) # the first apprearing index
+        dt[0] = -1
+        for i in range(N):
+            sum_v += nums[i]
+            mod = sum_v % k if k != 0 else sum_v
+            if mod in dt:
+                if i - dt[mod] >= 2:
+                    return True
+            else:
+                dt[mod] = i
+
+        return False
+
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
         if not nums: return False
         N = len(nums)
 

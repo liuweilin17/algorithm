@@ -105,6 +105,65 @@ class NumArray1:
 
         return ret
 
+class TreeNode:
+    def __init__(self, begin, end, sumV):
+        self.begin = begin
+        self.end = end
+        self.sumV = sumV
+        self.left = None
+        self.right = None
+
+def buildTree(nums, begin, end):
+    if begin > end:
+        return None
+    elif begin == end:
+        return TreeNode(begin, end, nums[begin])
+    else:
+        ret = TreeNode(begin, end, 0)
+        mid = (begin + end) // 2
+        ret.left = buildTree(nums, begin, mid)
+        ret.right = buildTree(nums, mid+1, end)
+        if ret.left: ret.sumV += ret.left.sumV
+        if ret.right: ret.sumV += ret.right.sumV
+        return ret
+
+# Use node to implement Segment Tree
+class NumArray3:
+
+    def __init__(self, nums: List[int]):
+        N = len(nums)
+        self.root = buildTree(nums, 0, N-1)
+
+    def update(self, i: int, val: int) -> None:
+        self.updateSub(self.root, i, val)
+
+    def updateSub(self, nd, i, val):
+        # We could ensure index i is in the children of nd
+        if nd.begin == nd.end: nd.sumV = val
+        else:
+            mid = (nd.begin + nd.end) // 2
+            if i <= mid:
+                self.updateSub(nd.left, i, val)
+            else:
+                self.updateSub(nd.right, i, val)
+            nd.sumV = nd.left.sumV + nd.right.sumV
+
+    def sumRange(self, i: int, j: int) -> int:
+        return self.sumRangeSub(self.root, i, j)
+
+    def sumRangeSub(self, nd, i, j):
+        if not nd: return 0
+        elif nd.begin == i and j == nd.end:
+            return nd.sumV
+        else:
+            mid = (nd.begin + nd.end) // 2
+            if mid < i:
+                return self.sumRangeSub(nd.right, i, j)
+            elif mid >= j:
+                return self.sumRangeSub(nd.left, i, j)
+            else:
+                return self.sumRangeSub(nd.left, i, mid) + self.sumRangeSub(nd.right, mid+1, j)
+
 # Your NumArray object will be instantiated and called as such:
 # obj = NumArray(nums)
 # obj.update(i,val)

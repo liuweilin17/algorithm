@@ -11,7 +11,25 @@
 #1124. Longest Well-Performing Interval
 
 class Solution:
-    def longestWPI(self, hours: List[int]) -> int:
+    def longestWPI1(self, hours: List[int]) -> int:
+        N = len(hours)
+        hours = [1 if hour > 8 else -1 for hour in hours]
+        sumv = 0
+        dt = collections.defaultdict(int)
+        dt[0] = -1
+        max_len = 0
+        for i in range(N):
+            sumv += hours[i]
+            if sumv > 0: # Notice this is important
+                max_len = max(max_len, i+1)
+            elif sumv-1 in dt: # Simply use sumv since sum is consecutive
+                max_len = max(max_len, i-dt[sumv-1])
+            else: pass
+            if sumv not in dt:
+                dt[sumv] = i
+        return max_len
+
+    def longestWPI2(self, hours: List[int]) -> int:
         # create new arr
         N = len(hours)
         a = [0] * (N+1) #a[i] the sum of a[0], ..., a[i-1]
