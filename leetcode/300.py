@@ -11,67 +11,44 @@
 #300. Longest Increasing Subsequence
 
 class Solution:
-    # O(n^2)
-    def lengthOfLIS1(self, nums: 'List[int]') -> 'int':
-        # d[i], longest length ending at i-th
-        # pre[i], i-th pre number
-        #pre = {}
-        n = len(nums)
-        d = [1] * n
-        for i in range(1, n):
-            p = -1
+    # O(N^2) time, O(N) space
+    def lengthOfLIS1(self, nums: List[int]) -> int:
+        if not nums: return 0
+        # dp[i] the length of LIS ending at i
+        N = len(nums)
+        dp = [1] * N
+        for i in range(1, N):
             for j in range(i):
-                if nums[j] < nums[i]:
-                    if d[j]+1 > d[i]:
-                        d[i] = d[j] + 1
-                        #p = j
-            #pre[i] = p
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
 
-        maxL = 0
-        #end = 0
-        for i in range(n):
-            if d[i] > maxL:
-                maxL = d[i]
-                #end = i
-
-        return maxL
-
-    # notice!!!
-    def binarySearch(self, nums, target):
-        '''
-        @return: insert position
-        '''
-        n = len(nums)
-        if n==0: return -1
-        l, m, r = 0, 0, n-1
-        while l <= r:
-            m = (l+r) // 2
-            if nums[m] < target:
-                l = m + 1
-            elif nums[m] > target:
-                r = m - 1
+    # O(NlogN) time, O(N) space
+     def lengthOfLIS2(self, nums: List[int]) -> int:
+        if not nums: return 0
+        arr = []
+        for num in nums:
+            ind = self.findInsertPos(arr, num)
+            if ind == len(arr):
+                arr.append(num)
             else:
-                return m # found, >=0
-        if l == m + 1:
-            pos = l
-        else:
-            pos = r+1
-        
-        return -pos-1
+                arr[ind] = num
+        return len(arr)
 
-    # O(nlogn) 
-    def lengthOfLIS2(self, nums: 'List[int]') -> 'int':
-        n = len(nums)
-        d = []
-        for i in nums:
-            pos = self.binarySearch(d, i)
-            if pos < 0:
-                pos = -pos-1
-                if pos == len(d):
-                    d.append(i)
-                else:
-                    d[pos]=i
-            #print(d)
-        return len(d)
+    def findInsertPos(self, arr, val):
+        if not arr:
+            return 0
+        # binary search
+        N = len(arr)
+        left, right = 0, N-1
+        while left <= right:
+            mid = left + (right-left)//2
+            if arr[mid] > val:
+                right = mid - 1
+            elif arr[mid] < val:
+                left = mid + 1
+            else:
+                return mid
+        return left
 
 
