@@ -11,7 +11,7 @@
 # 487. Max Consecutive Ones II.
 
 class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
+   def findMaxConsecutiveOnes1(self, nums: List[int]) -> int:
         # flip at most one 0
         last = -1 # last position of flipping 0
         left, right = -1, 0
@@ -21,18 +21,32 @@ class Solution:
             if nums[right] == 1:
                 if left == -1: # find the beginning
                     left = right
-                right += 1
             else:
                 if last == -1: # we can flip
                     if left == -1: # find the beginning
                         left = right
                     last = right # flip pos is assigned to last
-                    right += 1
                 else:
                     maxL = max(maxL, right-left)
-                    left, right = -1, last+1 # start from last+1
-                    last = -1
-        if left != -1: # consecutiveOnes has been found
-            maxL = max(maxL, right -left)
+                    left = last + 1
+                    last = right
+            right += 1
+        
+        maxL = max(maxL, right -left)
         return maxL
 
+    # follow up question
+    def findMaxConsecutiveOnes2(self, nums: List[int]) -> int:
+        # follow up question
+        ret = 0
+        cnt = 0 # number of consecutive ones so far
+        pre = -1 # number of consecutive ones before last 0
+        for num in nums:
+            if num == 1:
+                cnt += 1
+                ret = max(ret, cnt+pre+1) # last 0 could be flipped, so we add 1
+            else:
+                ret = max(ret, cnt+1) # current 0 could be flipped, so we add 1
+                pre = cnt # number of 1s before current 0 update
+                cnt = 0 # number of 1s so far is set to 0
+        return ret

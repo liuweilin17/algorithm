@@ -30,6 +30,28 @@ class Solution:
                 i+=1
         return ret
 
+    def lengthOfLongestSubstring2(self, s: str) -> int:
+        dt = {} # the first appearing index of c
+        left, right = 0, 0
+        N = len(s)
+        maxL = 0
+        while left <= right and right < N:
+            c = s[right]
+            if c not in dt:
+                dt[c] = right
+            else:
+                maxL = max(maxL, right-left)
+                pre = dt[c]
+                # clear all records of c before pre
+                for i in range(left, pre+1):
+                    del dt[s[i]]
+                left = pre + 1
+                dt[c] = right
+            right += 1
+        # print(left)
+        maxL = max(right-left, maxL)
+        return maxL
+
 
 
 
