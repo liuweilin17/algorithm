@@ -32,3 +32,21 @@ class Solution:
                 queue.append(nd.left)
                 
         return ret
+
+    # in preorder, the leftmost node is the first one to be visited in its layer
+    def findBottomLeftValue(self, root: TreeNode) -> int:
+        if not root: return 0
+        # dfs
+        self.ret = 0
+        self.dfs = -1
+        def dfs(nd, depth):
+            if nd:
+                if not nd.left and not nd.right:
+                    if depth > self.dfs:
+                        self.dfs = depth
+                        self.ret = nd.val
+                dfs(nd.left, depth+1)
+                dfs(nd.right, depth+1)
+        dfs(root, 0)
+
+        return self.ret

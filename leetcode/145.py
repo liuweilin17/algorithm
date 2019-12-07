@@ -38,7 +38,7 @@ class Solution:
                 ret.append(nd.val)
                 st.pop()
                 pre = nd
-                nd = None # notice!!!
+                nd = None # notice!!!, other wise nd's left children will be put into stack again.
             else:
                 if not nd.right: # no right child
                     ret.append(nd.val)
