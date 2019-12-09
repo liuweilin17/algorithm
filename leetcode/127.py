@@ -60,34 +60,58 @@ class Solution:
     # time comlexity: O(MN)
     # space comlexity: O(MN)
     def ladderLength2(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        if endWord not in wordList or not beginWord or not endWord or not wordList:
-            return 0
-        
-        N = len(beginWord)
-        # create dict, intermediate_word -> original word
-        # to reduce the time complexity of finding one character different of string
+        # create graph based on similar words
+        N = len(wordList)
+        M = len(beginWord)
         dt = collections.defaultdict(list)
-        for word in wordList:
-            for i in range(N):
-                dt[word[:i] + '*' + word[i+1:]].append(word)
-                
-        # BFS
+        for i in range(N):
+            word = wordList[i]
+            for j in range(M):
+                dt[word[:j]+'*'+word[j+1:]].append(word)
+        
+        # dt creates a graph between different words.
+        # bfs to find the shortest path
+        visited = [beginWord] # word, level
         Q = Queue()
         Q.put((beginWord, 1))
-        visited = [beginWord]
-        while not Q.empty(): # Notice while not Q will be wrong !!!
+        while not Q.empty():
             word, level = Q.get()
-            for i in range(N):
-                intermediate_word = word[:i] + '*' + word[i+1:]
-                for wordd in dt[intermediate_word]:
-                    if wordd == endWord:
-                        return level + 1
-                    if wordd not in visited:
-                        Q.put((wordd, level+1))
-                        visited.append(wordd)
-                dt[intermediate_word] = []
-                
+            for i in range(M):
+                inter_word = word[:i] + '*' + word[i+1:]
+                for nei in dt[inter_word]:
+                    if nei not in visited:
+                        if nei == endWord:
+                            return level+1
+                        Q.put((nei, level+1))
+                        visited.append(nei)
+                dt[inter_word] = [] # TLE if not without this line
         return 0
 
+    # without the use of visited
+    def ladderLength3(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        # create graph based on similar words
+        N = len(wordList)
+        M = len(beginWord)
+        dt = collections.defaultdict(list)
+        for i in range(N):
+            word = wordList[i]
+            for j in range(M):
+                dt[word[:j]+'*'+word[j+1:]].append(word)
+
+        # dt creates a graph between different words.
+        # bfs to find the shortest path
+        # visited = [beginWord] # word, level
+        Q = Queue()
+        Q.put((beginWord, 1))
+        while not Q.empty():
+            word, level = Q.get()
+            for i in range(M):
+                inter_word = word[:i] + '*' + word[i+1:]
+                for nei in dt[inter_word]:
+                    if nei == endWord:
+                        return level+1
+                    Q.put((nei, level+1))
+                dt[inter_word] = [] # TLE if not without this line
+        return 0
 
 
