@@ -31,6 +31,26 @@ class Solution(object):
                 rec.append(n_new)
                 n = n_new
 
+    def isHappy1(self, n: int) -> bool:
+        def getSum(n):
+            sum_ = 0
+            while n:
+                a = n%10
+                sum_ += a * a
+                n //= 10
+            return sum_
+
+        # the process would repeat in a loop
+        slow, fast = n, n
+        while True:
+            slow = getSum(slow)
+            fast = getSum(getSum(fast))
+            if slow == 1:
+                return True
+            elif slow == fast:
+                return False
+            else: pass
+
 if __name__ == '__main__':
     s = Solution()
     print s.isHappy(19)
