@@ -11,43 +11,56 @@
 import sys
 
 class Solution(object):
-    def maxSubArray(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        sum = (-1)*sys.maxsize
-        maxSum = (-1)*sys.maxsize
-        start = 0 # starting point in subarray with maximum value
-        end = 0 # ending point in subarray with maximum value
-        p = 0
-        for i in range(len(nums)):
-            if sum < 0: #如果当前和小于0，直接从当前数字重新开始计算和
-                sum = nums[i]
-                p = i
-            else: #否则继续加
-                sum += nums[i]
-            if sum > maxSum: #更新maxSum
-                maxSum = sum
-                start = p
-                end = i
-        return maxSum
+    # DP, O(n) time, O(n) space
+    def maxSubArray(self, nums: List[int]) -> int:
+        # dp[i]: the largest sum ending at nums[i]
+        ret = 0
+        if not nums: return 0
+        N = len(nums)
+        dp = [0 for _ in range(N)]
+        dp[0] = nums[0]
+        for i in range(1, N):
+            dp[i] = max(dp[i-1]+nums[i], nums[i])
 
-    # dynamic programming
-    # f[i] is the max value of subarray ending at i
-    # the optimal solution is max(f)
-    def maxSubArray1(self, nums):
-        l = len(nums)
-        f = [1] * l
-        for i in range(l):
-            if i == 0:
-                f[i] = nums[i]
-            else:
-                if f[i-1] > 0:
-                    f[i] = f[i-1] + nums[i]
-                else:
-                    f[i] = nums[i]
-        return max(f)
+        return max(dp)
+
+    # DP, O(n) time, O(n) space
+    def maxSubArray(self, nums: List[int]) -> int:
+        if not nums: return 0
+        N = len(nums)
+        cur = nums[0] # current max ending at the current position
+        ret = cur
+        for i in range(1, N):
+            cur = max(nums[i], cur+nums[i])
+            ret = max(cur, ret) 
+        return ret
+
+    # Divide and Conquer
+    def maxSubArray(self, nums: List[int]) -> int:
+        def helper(begin, end):
+            if begin == end: 
+                return nums[begin]
+            # return max subarray from begin to end
+            mid = (begin + end) // 2
+            leftMax = helper(begin, mid)
+            rightMax = helper(mid+1, end)
+            crossMax1 = float('-inf')
+            t = 0
+            for i in range(mid, begin-1, -1):
+                t += nums[i]
+                crossMax1 = max(crossMax1, t)
+            crossMax2 = float('-inf')
+            t = 0
+            for i in range(mid+1, end+1):
+                t += nums[i]
+                crossMax2 = max(crossMax2, t)
+            if crossMax1 == float('-inf'): crossMax1 = 0
+            if crossMax2 == float('-inf'): crossMax2 = 0
+            
+            return max([leftMax, rightMax, crossMax1+crossMax2])
+                
+        N = len(nums)
+        return helper(0, N-1)
 
 if __name__ == '__main__':
     s = Solution()
