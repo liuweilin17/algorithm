@@ -34,27 +34,30 @@ class Solution:
                 
         return profit
 
-    # generate method
-     def maxProfit3(self, prices: List[int]) -> int:
-        # buy[i], maximum profit, the last action is buying rather than selling
-        # sell[i], maximum profit, the last action is selling rather than buying
-        # buy[i] = max(buy[i-1], sell[i-1]-prices[i])
-        # sell[i] = max(sell[i-1], buy[i-1]+prices[i])
-        # b0 = max(b1, s1-prices[i])
-        # s0 = max(s1, b1+prices[i])
-
-
+    # DP, O(N) time, O(N) space
+    def maxProfit(self, prices: List[int]) -> int:
+        # dp1[i]: the max profit of 0...i, last op is buy
+        # dp2[i]: the max profit of 0...i, last op is sell
         N = len(prices)
-        if N == 0 or N == 1:
-            return 0
-
-        b0, b1 = 0, -prices[0]
-        s0, s1 = 0, 0
+        if not N: return 0
+        dp1 = [0 for _ in range(N)]
+        dp1[0] = -prices[0] # last op is buy, so dp1[0] is the price after prices[0] is sold
+        dp2 = [0 for _ in range(N)]
+        dp2[0] = 0 # last op is sell， at prices[0] no stock is bought, the profit is 0
         for i in range(1, N):
-            b0 = max(b1, s1-prices[i])
-            s0 = max(s1, b1+prices[i])
-            b1 = b0
-            s1 = s0
+            dp1[i] = max(dp1[i-1], dp2[i-1]-prices[i])
+            dp2[i] = max(dp2[i-1], dp1[i-1]+prices[i])
+        return max(dp1[N-1], dp2[N-1])
 
-        return s0
+    # DP, O(N) time, O(1) space
+    def maxProfit(self, prices: List[int]) -> int:
+        N = len(prices)
+        if not N: return 0
+        a1 = -prices[0]
+        a2 = 0
+        for i in range(1, N):
+            t = a1
+            a1 = max(a1, a2-prices[i])
+            a2 = max(a2, t+prices[i])
+        return a2
 
